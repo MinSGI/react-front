@@ -2,16 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import {IntlProvider} from "react-intl";
+import enUsMsg from "./locale/en-US.json";
+import koMsg from "./locale/ko.json";
+import zhMsg from "./locale/zh.json";
+import Form from "./ui/Form";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const locale = localStorage.getItem("locale") ?? "ko";
+const messages = { "en-US": enUsMsg, ko: koMsg, zh: zhMsg }[locale];
+
+console.log("locale : ", locale);
+console.log("navigator : ", navigator.language);
+root.render(
+  <IntlProvider locale={locale} messages={messages}>
+    {/*<App />*/}
+      <Form />
+  </IntlProvider>
+);

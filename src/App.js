@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import {FormattedMessage} from "react-intl";
 
 function App() {
   return (
@@ -17,6 +18,12 @@ function App() {
         >
           Learn React
         </a>
+        <FormattedMessage id={'title'} />
+        <FormattedMessage
+            id="info"
+            defaultMessage="메시지를 찾을 수 없습니다. (locale: {locale})"
+            values={{ locale: localStorage.getItem("locale") }}
+        />
       </header>
     </div>
   );
